@@ -12,6 +12,7 @@ Example:
 The package list passed to the build script is copied to the build directory as ```packages.txt```.
 
 **Do not run with sudo / as root**
+
 *Important! The packages should be downloaded using the target hardware and operating system (e.g. Raspberry Pi OS running on a Raspberry Pi 3/4/400).*
 
 ## Including packages from non-default repositories
