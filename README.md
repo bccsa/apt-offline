@@ -13,7 +13,7 @@ The package list passed to the build script is copied to the build directory as 
 
 **Do not run with sudo / as root**
 
-*Important! The packages should be downloaded using the target hardware and operating system (e.g. Raspberry Pi OS running on a Raspberry Pi 3/4/400).*
+*Important! The repository should be built using the target hardware and operating system (e.g. Raspberry Pi OS armhf running on a Raspberry Pi 3/4/400).*
 
 ## Including packages from non-default repositories
 Non-default repositories may be added to the build environment's ```/etc/apt``` sources, which will enable the ```build.sh``` script to include packages from these non-default repositories. It is not needed to add the non-default repositories to the target devices as the package files will be included in the offline repository.
