@@ -11,6 +11,8 @@
 packagelist=$1
 buildDir=$2
 
+apt-get -y update
+
 # Get the script running directory
 scriptDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
