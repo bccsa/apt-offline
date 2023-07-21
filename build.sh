@@ -10,6 +10,7 @@
 
 packagelist=$1
 buildDir=$2
+dir=$(dirname $packagelist)
 
 apt-get -y update
 
@@ -36,8 +37,9 @@ then
             output="$output
             $package"
 
-            path=$(echo "$path" | grep "^\w")
-
+            p=$(echo "$path" | grep "^\w")
+            path="$dir/$p"
+            
             if [ "$path" != "" ]
             then
                 # Copy .deb package to build directory
