@@ -39,7 +39,7 @@ then
             # Install quietly
             apt-get -y install $package -qq > /dev/null
         fi
-    done < "$packagelist"
+    done < "$repository/packages.txt"
 fi
 
 # Restore the default repository
