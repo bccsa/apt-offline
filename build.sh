@@ -43,7 +43,7 @@ then
             if [ "$path" != "" ]
             then
                 # Copy .deb package to build directory
-                cp $path $buildDir
+                cp -r $path $buildDir
 
                 # Scan for dependencies
                 scanoutput=$(dpkg-scanpackages $path | grep Depends: | sed -e 's/Depends://g' | perl -pe 's/\((.*?)\)| //g' | perl -pe 's/\|/,/g')
