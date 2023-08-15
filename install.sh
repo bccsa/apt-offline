@@ -23,7 +23,7 @@ fi
 # Replace the default apt sources repository with the offline sources repository
 su -c "echo '$sourceref' > /etc/apt/sources.list"
 
-# Install packages
+# Update apt to use newly selected sources list
 apt-get -y update > /dev/null
 
 # Attempt to fix previously broken installs
@@ -37,7 +37,8 @@ then
         if [ "$package" != "" ]
         then
             # Install quietly
-            apt-get -y install $package -qq > /dev/null
+            # Force overwrite: https://askubuntu.com/questions/176121/dpkg-error-trying-to-overwrite-file-which-is-also-in
+            apt-get -y -o Dpkg::Options::="--force-overwrite" install $package -qq > /dev/null
         fi
     done < "$repository/packages.txt"
 fi
