@@ -18,7 +18,7 @@ sudo apt-get -y update
 scriptDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Clear the build directory
-rm -rf "$buildDir/*"
+rm -rf "$buildDir"/*
 
 output=""
 
@@ -69,7 +69,7 @@ then
     # format download list
     downloadList="$downloadList
     "
-    downloadList=$(echo "$downloadList" | awk '{gsub(/<\/?loc>|[[:space:]]/,"");print}' | sort -u | tr -s '\n' ' ' | xargs)
+    downloadList1=$(echo "$downloadList" | awk '{gsub(/<\/?loc>|[[:space:]]/,"");print}' | sort -u | tr -s '\n' ',' | xargs)
 
     # format and save output package list
     echo "$output" | awk '{gsub(/<\/?loc>|[[:space:]]/,"");print}' | sort -u > "$buildDir/packages.txt"
@@ -77,10 +77,13 @@ then
     # Download packages & dependencies
     cd "$buildDir"
     # eval "apt-get download $downloadList"
-    IFS=' '
-    for debPkg in $downloadList
+    IFS=','
+    for debPkg in $downloadList1
     do
-        apt-get download "$debPkg"
+        if [ "$debPkg" != "" ]
+        then
+            apt-get download "$debPkg"
+        fi
     done
 
     # Build package index
