@@ -17,9 +17,8 @@ apt-get -y update
 # Get the script running directory
 scriptDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Create / clear the build directory
-rm -rf "$buildDir"
-mkdir -p "$buildDir"
+# Clear the build directory
+rm -rf "$buildDir/*"
 
 output=""
 
@@ -38,10 +37,10 @@ then
             $package"
 
             p=$(echo "$path" | grep "^\w")
-            path="$dir/$p"
             
-            if [ "$path" != "" ]
+            if [ "$p" != "" ]
             then
+                path="$dir/$p"
                 # Copy .deb package to build directory
                 cp -r $path $buildDir
 
